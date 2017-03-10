@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple TCP_IP_Socket_Server", "TCP_IP_Socket_Server\Simple TCP_IP_Socket_Server.csproj", "{6ACF093C-8736-4C33-8976-15628892CBCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple TCP_IP_Socket_Client", "TCP_IP_Socket_Client\Simple TCP_IP_Socket_Client.csproj", "{1C453020-5053-4273-8869-28A8B9CE1DAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advanced TCP_IP_Socket_Client", "Advanced TCP_IP_Socket_Client\Advanced TCP_IP_Socket_Client.csproj", "{75172A9A-7D57-4548-9117-0E6B0380A90E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advanced TCP_IP_Socket_Server", "Advanced TCP_IP_Socket_Server\Advanced TCP_IP_Socket_Server.csproj", "{B34A4723-E766-4247-AF22-58678AEA4815}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6ACF093C-8736-4C33-8976-15628892CBCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ACF093C-8736-4C33-8976-15628892CBCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ACF093C-8736-4C33-8976-15628892CBCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ACF093C-8736-4C33-8976-15628892CBCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C453020-5053-4273-8869-28A8B9CE1DAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C453020-5053-4273-8869-28A8B9CE1DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C453020-5053-4273-8869-28A8B9CE1DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C453020-5053-4273-8869-28A8B9CE1DAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75172A9A-7D57-4548-9117-0E6B0380A90E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75172A9A-7D57-4548-9117-0E6B0380A90E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75172A9A-7D57-4548-9117-0E6B0380A90E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75172A9A-7D57-4548-9117-0E6B0380A90E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B34A4723-E766-4247-AF22-58678AEA4815}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B34A4723-E766-4247-AF22-58678AEA4815}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B34A4723-E766-4247-AF22-58678AEA4815}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B34A4723-E766-4247-AF22-58678AEA4815}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

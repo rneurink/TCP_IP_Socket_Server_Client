@@ -1,0 +1,66 @@
+﻿<Window x:Class="Advanced_TCP_IP_Socket_Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Advanced_TCP_IP_Socket_Client"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <GroupBox Header="Controls">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Label>Port:</Label>
+                        <wpfTool:IntegerUpDown Name="PortUpDown" Margin="0,5,0,5" Grid.Column="1" Minimum="1024" Maximum="65535" Value="4665"></wpfTool:IntegerUpDown>
+                    </Grid>
+                    <Grid Name="ConnectOptionsGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Label>IP:</Label>
+                        <TextBox Name="IpTB" Grid.Column="1" Margin="0,5,0,5"/>
+                        <Label Grid.Row="1">User:</Label>
+                        <TextBox Name="UserTB" Grid.Column="1" Grid.Row="1" Margin="0,5,0,5"></TextBox>
+                        <Label Grid.Row="2">Pass:</Label>
+                        <TextBox Name="PassTB" Grid.Column="1" Grid.Row="2" Margin="0,5,0,5"></TextBox>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Name="ConnectButton" Margin="0,0,2.5,0">Connect</Button>
+                        <Button Name="DisconnectButton" Grid.Column="1" Margin="2.5,0,0,0" IsEnabled="False">Disconnect</Button>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Name="CommandGB" IsEnabled="False">
+                <StackPanel>
+                    <Label>Commands to send</Label>
+                    <TextBox Name="SendTB" Margin="0,0,0,2.5"></TextBox>
+                    <Button Name="SendButton" Margin="0,2.5,0,0">Send</Button>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <GroupBox Header="Console" Grid.Column="1">
+            <TextBox Name="ConsoleTB" AcceptsReturn="True" IsReadOnly="True" VerticalScrollBarVisibility="Auto"></TextBox>
+        </GroupBox>
+    </Grid>
+</Window>
