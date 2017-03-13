@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Advanced_TCP_IP_Socket_Client
 {
@@ -23,7 +24,9 @@ namespace Advanced_TCP_IP_Socket_Client
 
             ConnectButton.Click += ConnectButton_Click;
             DisconnectButton.Click += DisconnectButton_Click;
+
             SendButton.Click += SendButton_Click;
+            SendTB.KeyDown += SendTB_KeyDown;
         }
 
         #region UIHandlers
@@ -55,6 +58,19 @@ namespace Advanced_TCP_IP_Socket_Client
             catch (ObjectDisposedException ex)
             {
                 ClientLog("SendButton_Click " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// When the user pressed enter do the same as the buttonclick
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SendTB_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                SendButton_Click(this, null);
             }
         }
 

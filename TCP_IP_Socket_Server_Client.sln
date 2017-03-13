@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advanced TCP_IP_Socket_Clie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advanced TCP_IP_Socket_Server", "Advanced TCP_IP_Socket_Server\Advanced TCP_IP_Socket_Server.csproj", "{B34A4723-E766-4247-AF22-58678AEA4815}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple TCP_IP_TCPClient_Listener_Server", "Simple TCP_IP_TCPClient_Listener_Server\Simple TCP_IP_TCPClient_Listener_Server.csproj", "{B56DE79F-0279-4272-8E30-7A304F10D70B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple TCP_IP_TCPClient_Listener_Client", "Simple TCP_IP_TCPClient_Listener_Client\Simple TCP_IP_TCPClient_Listener_Client.csproj", "{D4B690CF-EBB9-48A4-A833-9AC31E4086DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{B34A4723-E766-4247-AF22-58678AEA4815}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B34A4723-E766-4247-AF22-58678AEA4815}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B34A4723-E766-4247-AF22-58678AEA4815}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B56DE79F-0279-4272-8E30-7A304F10D70B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B56DE79F-0279-4272-8E30-7A304F10D70B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B56DE79F-0279-4272-8E30-7A304F10D70B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B56DE79F-0279-4272-8E30-7A304F10D70B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4B690CF-EBB9-48A4-A833-9AC31E4086DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4B690CF-EBB9-48A4-A833-9AC31E4086DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4B690CF-EBB9-48A4-A833-9AC31E4086DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4B690CF-EBB9-48A4-A833-9AC31E4086DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

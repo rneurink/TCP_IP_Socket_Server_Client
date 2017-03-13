@@ -24,6 +24,13 @@ namespace Simple_TCP_IP_Socket_Server
             Console.Title = "Server";
             SetupServer();
             Console.ReadLine();
+            foreach (Socket socket in _ClientSockets)
+            {
+                socket.Shutdown(SocketShutdown.Both);
+                socket.Close();
+            }
+            _ServerSocket.Shutdown(SocketShutdown.Both);
+            _ServerSocket.Close();
         }
 
         /// <summary>
@@ -44,11 +51,11 @@ namespace Simple_TCP_IP_Socket_Server
         /// <summary>
         /// Callback for when someone connects to the server
         /// </summary>
-        /// <param name="result"></param>
-        private static void AcceptCallback(IAsyncResult result)
+        /// <param name="ar"></param>
+        private static void AcceptCallback(IAsyncResult ar)
         {
             //Create a new socket to free up the server socket
-            Socket socket = _ServerSocket.EndAccept(result);
+            Socket socket = _ServerSocket.EndAccept(ar);
             _ClientSockets.Add(socket);
             //Start receiving on the socket
             socket.BeginReceive(_Data, 0, _Data.Length, SocketFlags.None, new AsyncCallback(ReceiveCallback), socket);
@@ -60,13 +67,13 @@ namespace Simple_TCP_IP_Socket_Server
         /// <summary>
         /// Callback for when a client sends data
         /// </summary>
-        /// <param name="result"></param>
-        private static void ReceiveCallback(IAsyncResult result)
+        /// <param name="ar"></param>
+        private static void ReceiveCallback(IAsyncResult ar)
         {
             //Specify the socket (is the same as socket in AcceptCallBack() thus the client socket)
-            Socket socket = (Socket)result.AsyncState;
+            Socket socket = (Socket)ar.AsyncState;
             //Trim the received data so we dont get null bytes
-            int received = socket.EndReceive(result);
+            int received = socket.EndReceive(ar);
             byte[] dataBuffer = new byte[received];
             Array.Copy(_Data, dataBuffer, received);
 
@@ -74,7 +81,15 @@ namespace Simple_TCP_IP_Socket_Server
             Console.WriteLine($@"Received {text}");
 
             //Commands for the server
-            if (text.ToLower() == "get time")
+            if (text.ToLower() == "exit")
+            {
+                socket.Shutdown(SocketShutdown.Both);
+                socket.Close();
+                _ClientSockets.Remove(socket);
+                Console.WriteLine("Client disconnected");
+                return;
+            }
+            else if (text.ToLower() == "get time")
             {
                 SendText(DateTime.Now.ToString(), socket);
             }
@@ -98,11 +113,11 @@ namespace Simple_TCP_IP_Socket_Server
         /// <summary>
         /// Callback for when the data is completed sending
         /// </summary>
-        /// <param name="result"></param>
-        private static void SendCallback(IAsyncResult result)
+        /// <param name="ar"></param>
+        private static void SendCallback(IAsyncResult ar)
         {
-            Socket socket = (Socket)result.AsyncState;
-            socket.EndSend(result);
+            Socket socket = (Socket)ar.AsyncState;
+            socket.EndSend(ar);
             socket.BeginReceive(_Data, 0, _Data.Length, SocketFlags.None, new AsyncCallback(ReceiveCallback), socket);
         }
     }

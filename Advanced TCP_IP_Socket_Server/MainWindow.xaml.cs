@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Advanced_TCP_IP_Socket_Server
 {
@@ -51,6 +52,7 @@ namespace Advanced_TCP_IP_Socket_Server
             StartServerButton.Click += StartServerButton_Click;
             StopServerButton.Click += StopServerButton_Click;
 
+            SendTB.KeyDown += SendTB_KeyDown;
             SendButton.Click += SendButton_Click;
         }
 
@@ -65,7 +67,7 @@ namespace Advanced_TCP_IP_Socket_Server
             string command = SendTB.Text.ToLower();
             if (command == "help")
             {
-                ServerLog("Available commands:\r Help - Displays this message\r Lock - Stop accepting new clients\r Unlock - Start accepting new clients\r ListClients - Lists connected clients\r Kill <ClientID> - Kills a client connection\r KillAll - Kills all client connections\r SendAll <Message> - Sends a message to all clients\r Send <ClientID> <Message> - Sends a message to the specified client");
+                ServerLog("Available commands:\n Help - Displays this message\n Lock - Stop accepting new clients\n Unlock - Start accepting new clients\n ListClients - Lists connected clients\n Kill <ClientID> - Kills a client connection\n KillAll - Kills all client connections\n SendAll <Message> - Sends a message to all clients\n Send <ClientID> <Message> - Sends a message to the specified client");
             }
             else if (command == "lock")
             {
@@ -91,7 +93,7 @@ namespace Advanced_TCP_IP_Socket_Server
             }
             else if (command == "listclients")
             {
-                string output = "Clients:\r";
+                string output = "Clients:\n";
 
                 if (_ClientList.Count == 0)
                 {
@@ -103,7 +105,7 @@ namespace Advanced_TCP_IP_Socket_Server
                     foreach (KeyValuePair<Socket, Client> client in _ClientList)
                     {
                         Client _client = client.Value;
-                        if (ClientID != 0) output += "\r";
+                        if (ClientID != 0) output += "\n";
                         output += $@" Client #{ClientID}: {_client.ClientEndpoint.Address.ToString()}:{_client.ClientEndpoint.Port}, Connected at: {_client.ConnectedAt}";
                         ClientID++;
                     }
@@ -210,16 +212,29 @@ namespace Advanced_TCP_IP_Socket_Server
                 }
                 catch (SocketException ex)
                 {
-                    ServerLog("SendAll " + ex.Message);
+                    ServerLog("Send " + ex.Message);
                 }
                 catch (ObjectDisposedException ex)
                 {
-                    ServerLog("SendAll " + ex.Message);
+                    ServerLog("Send " + ex.Message);
                 }
             }
             else
             {
                 ServerLog("Invalid command");
+            }
+        }
+
+        /// <summary>
+        /// When the user pressed enter do the same as the buttonclick
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SendTB_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                SendButton_Click(this, null);
             }
         }
 
@@ -396,9 +411,9 @@ namespace Advanced_TCP_IP_Socket_Server
         /// <param name="ar"></param>
         private void ReceiveCallback(IAsyncResult ar)
         {
+            Socket clientSocket = (Socket)ar.AsyncState;
             try
             {
-                Socket clientSocket = (Socket)ar.AsyncState;
                 int received = clientSocket.EndReceive(ar);
 
                 Client client;
@@ -419,7 +434,7 @@ namespace Advanced_TCP_IP_Socket_Server
                 string sendtext;
                 if (text.ToLower() == "help")
                 {
-                    sendtext = "Available commands:\r Help - Displays this message\r Get Time - Gets the time of the server\r Send <Message> - Sends a message to the server";
+                    sendtext = "Available commands:\n Help - Displays this message\n Get Time - Gets the time of the server\n Send <Message> - Sends a message to the server";
                 }
                 else if (text.ToLower() == "exit")
                 {
@@ -452,6 +467,8 @@ namespace Advanced_TCP_IP_Socket_Server
             {
                 ServerLog("ReceiveCallback " + ex.Message);
                 //Socket exception when client dies
+                clientSocket.Close();
+                _ClientList.Remove(clientSocket);
             }
             catch (ObjectDisposedException ex)
             {

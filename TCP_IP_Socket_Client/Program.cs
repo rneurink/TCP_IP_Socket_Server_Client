@@ -20,12 +20,12 @@ namespace Simple_TCP_IP_Socket_Client
             //Connect to the server. While not connected do not continue
             LoopConnect(ip);
             //Send commands to the server. This will loop
-            SendLoop();
+            LoopSend();
             //Safety so the main thread does not die
             Console.ReadLine();
         }
 
-        private static void SendLoop()
+        private static void LoopSend()
         {
             while (_ClientSocket.Connected)
             {
@@ -34,6 +34,12 @@ namespace Simple_TCP_IP_Socket_Client
                 byte[] data = Encoding.ASCII.GetBytes(command);
                 //Send a command
                 _ClientSocket.Send(data);
+                if (command.ToLower() == "exit")
+                {
+                    _ClientSocket.Shutdown(SocketShutdown.Both);
+                    _ClientSocket.Close();
+                    Environment.Exit(0);
+                }
 
                 //Wait for the server to reply
                 byte[] receivebuffer = new byte[1024];
@@ -52,7 +58,6 @@ namespace Simple_TCP_IP_Socket_Client
                 try
                 {
                     connectionAttempts++;
-
                     _ClientSocket.Connect(ip, _Port);
                 }
                 catch (SocketException)
@@ -62,10 +67,8 @@ namespace Simple_TCP_IP_Socket_Client
                     Console.WriteLine($@"Connection failed, attempts:{connectionAttempts}");
                 }
             }
-
             Console.Clear();
             Console.WriteLine("Connected");
-
         }
     }
 }

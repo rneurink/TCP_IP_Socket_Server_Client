@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Advanced_TCP_IP_Socket_Server"
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Closing="Window_Closing">
+        Title="TCP IP Server" Height="350" Width="525" Closing="Window_Closing" Icon="Icon.ico" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="180" />
