@@ -15,7 +15,7 @@ namespace Simple_TCP_IP_Socket_Client
         static void Main(string[] args)
         {
             Console.Title = "Client";
-            Console.Write("Enter ip address: ");
+            Console.Write("Enter ip addres: ");
             string ip = Console.ReadLine();
             //Connect to the server. While not connected do not continue
             LoopConnect(ip);
